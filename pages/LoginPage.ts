@@ -16,3 +16,4 @@ export class LoginPage {
     await this.page.locator(loginLocators.submit).click();
   }
 }
+
