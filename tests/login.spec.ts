@@ -1,13 +1,18 @@
-import { test, expect } from '@playwright/test';
+
 import { LoginPage } from '../pages/LoginPage';
 import { loginLocators } from '../locators/login.locators';
 import { loginData } from '../test-data/login.data';
+
+import { test, expect } from '../fixtures/baseTest';
+
+
 
 
 test('Successful login', async ({ page }) => {
   const login = new LoginPage(page);
 
   await page.goto('https://practicetestautomation.com/practice-test-login/');
+
   await login.enterUsername(loginData.validUser.username);
   await login.enterPassword(loginData.validUser.password);
   await login.clickLogin();
@@ -19,6 +24,15 @@ test('Successful login', async ({ page }) => {
     fullPage: true,
   });
 });
+
+
+// Verify that the logout link is visible using the loggedInPage fixture.
+test('Verify logout link is visible', async ({ loggedInPage, page }) => {
+  await expect(
+    page.getByRole('link', { name: 'Log out' })
+  ).toBeVisible();
+});
+
 
 
 test('Invalid username', async ({ page }) => {
