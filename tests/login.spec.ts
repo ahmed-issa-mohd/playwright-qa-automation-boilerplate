@@ -18,7 +18,7 @@ test('Successful login', async ({ page }) => {
   await login.enterPassword(loginData.validUser.password);
   await login.clickLogin();
 
-  await expect(page).toHaveURL(/logged-in-successfully/);
+  await expect(page).toHaveURL(/wrong-page-url/);
 
   await takeScreenshot(page, 'successful-login');
 });
