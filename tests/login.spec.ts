@@ -5,6 +5,7 @@ import { loginData } from '../test-data/login.data';
 
 import { test, expect } from '../fixtures/baseTest';
 
+import { takeScreenshot } from '../utils/screenshot.utils';
 
 
 
@@ -19,10 +20,7 @@ test('Successful login', async ({ page }) => {
 
   await expect(page).toHaveURL(/logged-in-successfully/);
 
-  await page.screenshot({
-    path: 'screenshots/successful-login.png',
-    fullPage: true,
-  });
+  await takeScreenshot(page, 'successful-login');
 });
 
 
@@ -35,6 +33,7 @@ test('Verify logout link is visible', async ({ loggedInPage, page }) => {
 
 
 
+
 test('Invalid username', async ({ page }) => {
   const login = new LoginPage(page);
 
@@ -44,6 +43,8 @@ test('Invalid username', async ({ page }) => {
   await login.clickLogin();
 
   await expect(page.locator(loginLocators.error)).toBeVisible();
+
+  await takeScreenshot(page, 'invalid-username');
 });
 
 test('Invalid password', async ({ page }) => {

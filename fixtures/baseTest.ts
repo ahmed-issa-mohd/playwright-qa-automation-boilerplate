@@ -24,3 +24,12 @@ export const test = base.extend<MyFixtures>({
 });
 
 export { expect };
+
+
+
+export function normalizeText(text: string): string {
+  return text.trim().toLowerCase();
+}
+
+
+
